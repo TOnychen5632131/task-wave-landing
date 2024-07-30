@@ -1,660 +1,821 @@
 <html><head><base href="https://websimcreationengine.com/taskwave-investor/">
-<title>TaskWave - 引领AI与人类协作的未来</title>
-<style>
-body, html {
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
-    background-color: #f6f8fa;
-    color: #333;
-    line-height: 1.6;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-header {
+  <title>TaskWave - 引领AI与人类协作的未来</title>
+  <style>
+  body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+      background-color: #f6f8fa;
+      color: #333;
+      line-height: 1.6;
+  }
+  
+  .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+  }
+  
+  header {
+      background: linear-gradient(135deg, #0052D4, #4364F7, #6FB1FC);
+      color: white;
+      padding: 60px 0;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+  
+  h1 {
+      font-size: 3em;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  }
+  
+  h2 {
+      color: #0052D4;
+      font-size: 2.2em;
+      margin-bottom: 30px;
+  }
+  
+  nav {
+      background-color: white;
+      padding: 15px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  nav ul {
+      list-style-type: none;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+  }
+  
+  nav ul li {
+      margin: 0 20px;
+  }
+  
+  nav ul li a {
+      text-decoration: none;
+      color: #0052D4;
+      font-weight: bold;
+      font-size: 1.1em;
+      transition: color 0.3s;
+  }
+  
+  nav ul li a:hover {
+      color: #4364F7;
+  }
+  
+  .section {
+      background-color: white;
+      margin: 40px 0;
+      padding: 60px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+  }
+  
+  #demo-container {
+      height: 600px;
+      display: flex;
+      background-color: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+      overflow: hidden;
+  }
+  
+  #task-panel {
+      width: 300px;
+      background-color: #2c3e50;
+      color: #ecf0f1;
+      padding: 20px;
+      overflow-y: auto;
+  }
+  
+  #task-list {
+      list-style-type: none;
+      padding: 0;
+  }
+  
+  .task-item {
+      background-color: #34495e;
+      margin-bottom: 15px;
+      padding: 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s;
+  }
+  
+  .task-item:hover {
+      background-color: #3498db;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  }
+  
+  #workspace {
+      flex-grow: 1;
+      position: relative;
+      overflow: hidden;
+  }
+  
+  #software-interface {
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      transition: all 0.5s;
+  }
+  
+  .data-point {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      background-color: #3498db;
+      border-radius: 50%;
+      opacity: 0;
+      transition: all 0.5s ease;
+      box-shadow: 0 0 10px #3498db;
+  }
+  
+  #ai-model {
+      position: absolute;
+      bottom: 30px;
+      right: 30px;
+      width: 120px;
+      height: 120px;
+      background: linear-gradient(135deg, #9b59b6, #8e44ad);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  }
+  
+  #data-flow {
+      position: absolute;
+      bottom: 90px;
+      right: 160px;
+      width: 200px;
+      height: 3px;
+      background: linear-gradient(to right, #3498db 50%, transparent 50%);
+      background-size: 20px 3px;
+      animation: dataFlow 1s linear infinite;
+  }
+  
+  @keyframes dataFlow {
+      0% { background-position: 0 0; }
+      100% { background-position: 20px 0; }
+  }
+  
+  #action-log {
+      position: absolute;
+      bottom: 30px;
+      left: 30px;
+      right: 170px;
+      height: 120px;
+      background-color: rgba(52, 73, 94, 0.9);
+      color: #ecf0f1;
+      border-radius: 8px;
+      padding: 15px;
+      font-size: 14px;
+      overflow-y: auto;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  }
+  
+  @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); box-shadow: 0 15px 30px rgba(0,0,0,0.3); }
+      100% { transform: scale(1); }
+  }
+  
+  #cursor {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 0l8 22 3-7 7 3 6-18z" fill="%233498db"/></svg>');
+      pointer-events: none;
+      z-index: 1000;
+      transition: all 0.3s ease;
+  }
+  
+  .btn {
+      display: inline-block;
+      padding: 12px 24px;
+      background: linear-gradient(135deg, #0052D4, #4364F7);
+      color: white;
+      text-decoration: none;
+      border-radius: 30px;
+      transition: all 0.3s;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      border: none;
+      cursor: pointer;
+  }
+  
+  .btn:hover {
+      background: linear-gradient(135deg, #4364F7, #0052D4);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  }
+  
+  #task-interface {
+      background-color: #f8f9fa;
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 40px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      text-align: center;
+      position: relative;
+      min-height: 400px;
+  }
+  
+  #sound-wave {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      margin: 0 auto;
+      display: none;
+  }
+  
+  .wave-circle {
+      position: absolute;
+      border: 2px solid #3498db;
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      animation: wave 2s linear infinite;
+  }
+  
+  @keyframes wave {
+      0% {
+          width: 0;
+          height: 0;
+          opacity: 0.8;
+      }
+      100% {
+          width: 200px;
+          height: 200px;
+          opacity: 0;
+      }
+  }
+  
+  #listening-text {
+      margin-top: 20px;
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #3498db;
+      display: none;
+  }
+  
+  .task-card {
+      background-color: white;
+      border-radius: 8px;
+      padding: 20px;
+      margin-top: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      display: none;
+      text-align: left;
+  }
+  
+  .task-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  }
+  
+  .task-title {
+      font-weight: bold;
+      color: #34495e;
+      margin-bottom: 10px;
+      font-size: 1.2em;
+  }
+  
+  .task-description {
+      color: #7f8c8d;
+      margin-bottom: 15px;
+  }
+  
+  .task-actions {
+      display: flex;
+      justify-content: flex-end;
+  }
+  
+  .task-btn {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: bold;
+      margin-left: 10px;
+  }
+  
+  .accept-btn {
+      background-color: #2ecc71;
+      color: white;
+  }
+  
+  .accept-btn:hover {
+      background-color: #27ae60;
+  }
+  
+  .reject-btn {
+      background-color: #e74c3c;
+      color: white;
+  }
+  
+  .reject-btn:hover {
+      background-color: #c0392b;
+  }
+  
+  #workflow {
+      width: 100%;
+      height: 400px;
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      overflow: hidden;
+  }
+  header {
     background: linear-gradient(135deg, #0052D4, #4364F7, #6FB1FC);
     color: white;
-    padding: 60px 0;
+    padding: 0;
     text-align: center;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    position: relative;
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
 }
 
 h1 {
-    font-size: 3em;
+    font-size: 4em;
     margin-bottom: 20px;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
 
-h2 {
+header p {
+    font-size: 1.5em;
+    max-width: 600px;
+    margin: 0 auto 30px;
+}
+
+.hero-cta {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #fff;
     color: #0052D4;
-    font-size: 2.2em;
-    margin-bottom: 30px;
-}
-
-nav {
-    background-color: white;
-    padding: 15px 0;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-nav ul {
-    list-style-type: none;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-}
-
-nav ul li {
-    margin: 0 20px;
-}
-
-nav ul li a {
     text-decoration: none;
-    color: #0052D4;
+    border-radius: 30px;
     font-weight: bold;
-    font-size: 1.1em;
-    transition: color 0.3s;
-}
-
-nav ul li a:hover {
-    color: #4364F7;
-}
-
-.section {
-    background-color: white;
-    margin: 40px 0;
-    padding: 60px;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.section:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-}
-
-#demo-container {
-    height: 600px;
-    display: flex;
-    background-color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-    overflow: hidden;
-}
-
-#task-panel {
-    width: 300px;
-    background-color: #2c3e50;
-    color: #ecf0f1;
-    padding: 20px;
-    overflow-y: auto;
-}
-
-#task-list {
-    list-style-type: none;
-    padding: 0;
-}
-
-.task-item {
-    background-color: #34495e;
-    margin-bottom: 15px;
-    padding: 15px;
-    border-radius: 8px;
-    cursor: pointer;
     transition: all 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-.task-item:hover {
-    background-color: #3498db;
+.hero-cta:hover {
+    background-color: #0052D4;
+    color: #fff;
     transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
-
-#workspace {
-    flex-grow: 1;
-    position: relative;
-    overflow: hidden;
-}
-
-#software-interface {
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    transition: all 0.5s;
-}
-
-.data-point {
-    position: absolute;
-    width: 12px;
-    height: 12px;
-    background-color: #3498db;
-    border-radius: 50%;
-    opacity: 0;
-    transition: all 0.5s ease;
-    box-shadow: 0 0 10px #3498db;
-}
-
-#ai-model {
-    position: absolute;
-    bottom: 30px;
-    right: 30px;
-    width: 120px;
-    height: 120px;
-    background: linear-gradient(135deg, #9b59b6, #8e44ad);
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    font-weight: bold;
-    font-size: 18px;
-    transition: all 0.3s ease;
     box-shadow: 0 10px 20px rgba(0,0,0,0.2);
 }
 
-#data-flow {
+#hero-animation {
     position: absolute;
-    bottom: 90px;
-    right: 160px;
-    width: 200px;
-    height: 3px;
-    background: linear-gradient(to right, #3498db 50%, transparent 50%);
-    background-size: 20px 3px;
-    animation: dataFlow 1s linear infinite;
-}
-
-@keyframes dataFlow {
-    0% { background-position: 0 0; }
-    100% { background-position: 20px 0; }
-}
-
-#action-log {
-    position: absolute;
-    bottom: 30px;
-    left: 30px;
-    right: 170px;
-    height: 120px;
-    background-color: rgba(52, 73, 94, 0.9);
-    color: #ecf0f1;
-    border-radius: 8px;
-    padding: 15px;
-    font-size: 14px;
-    overflow-y: auto;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
-
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); box-shadow: 0 15px 30px rgba(0,0,0,0.3); }
-    100% { transform: scale(1); }
-}
-
-#cursor {
-    position: absolute;
-    width: 24px;
-    height: 24px;
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 0l8 22 3-7 7 3 6-18z" fill="%233498db"/></svg>');
-    pointer-events: none;
-    z-index: 1000;
-    transition: all 0.3s ease;
-}
-
-.btn {
-    display: inline-block;
-    padding: 12px 24px;
-    background: linear-gradient(135deg, #0052D4, #4364F7);
-    color: white;
-    text-decoration: none;
-    border-radius: 30px;
-    transition: all 0.3s;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    border: none;
-    cursor: pointer;
-}
-
-.btn:hover {
-    background: linear-gradient(135deg, #4364F7, #0052D4);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-}
-
-#task-interface {
-    background-color: #f8f9fa;
-    border-radius: 12px;
-    padding: 20px;
-    margin-top: 40px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    text-align: center;
-    position: relative;
-    min-height: 400px;
-}
-
-#sound-wave {
-    position: relative;
-    width: 200px;
-    height: 200px;
-    margin: 0 auto;
-    display: none;
-}
-
-.wave-circle {
-    position: absolute;
-    border: 2px solid #3498db;
-    border-radius: 50%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    opacity: 0;
-    animation: wave 2s linear infinite;
-}
-
-@keyframes wave {
-    0% {
-        width: 0;
-        height: 0;
-        opacity: 0.8;
-    }
-    100% {
-        width: 200px;
-        height: 200px;
-        opacity: 0;
-    }
-}
-
-#listening-text {
-    margin-top: 20px;
-    font-size: 1.2em;
-    font-weight: bold;
-    color: #3498db;
-    display: none;
-}
-
-.task-card {
-    background-color: white;
-    border-radius: 8px;
-    padding: 20px;
-    margin-top: 20px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    transition: all 0.3s ease;
-    display: none;
-    text-align: left;
-}
-
-.task-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
-
-.task-title {
-    font-weight: bold;
-    color: #34495e;
-    margin-bottom: 10px;
-    font-size: 1.2em;
-}
-
-.task-description {
-    color: #7f8c8d;
-    margin-bottom: 15px;
-}
-
-.task-actions {
-    display: flex;
-    justify-content: flex-end;
-}
-
-.task-btn {
-    padding: 8px 16px;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: bold;
-    margin-left: 10px;
-}
-
-.accept-btn {
-    background-color: #2ecc71;
-    color: white;
-}
-
-.accept-btn:hover {
-    background-color: #27ae60;
-}
-
-.reject-btn {
-    background-color: #e74c3c;
-    color: white;
-}
-
-.reject-btn:hover {
-    background-color: #c0392b;
-}
-
-#workflow {
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 400px;
-    background-color: #fff;
-    border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    overflow: hidden;
+    height: 100%;
+    z-index: 1;
 }
 
-</style>
-</head>
-<body>
-<header>
-    <h1>TaskWave</h1>
-    <p>引领AI与人类协作的未来</p>
-</header>
+.node {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+}
 
-<nav>
-    <ul>
-        <li><a href="#about">关于我们</a></li>
-        <li><a href="#features">核心功能</a></li>
-        <li><a href="#demo">AI学习演示</a></li>
-        <li><a href="#workflow">工作流程</a></li>
-        <li><a href="#task-interface">接单界面</a></li>
-        <li><a href="#contact">联系我们</a></li>
-    </ul>
-</nav>
+.connection {
+    position: absolute;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.3);
+    transform-origin: left center;
+}
+  
+  </style>
+  </head>
+  <body>
+  <header>
+    <div id="hero-animation"></div>
+    <div class="hero-content">
+        <h1>TaskWave</h1>
+        <p>引领 AI 与人类协作的未来，重塑全球工作方式</p>
+        <a href="#demo" class="hero-cta">探索 AI 演示</a>
+    </div>
+    <!-- <div id="language-switch">
+        <button onclick="switchLanguage('zh')">中文</button>
+        <button onclick="switchLanguage('en')">English</button>
+    </div> -->
+  </header>
+  
+  <nav>
+      <ul>
+          <li><a href="#about">关于我们</a></li>
+          <li><a href="#features">核心功能</a></li>
+          <li><a href="#demo">AI 学习演示</a></li>
+          <li><a href="#workflow">工作流程</a></li>
+          <li><a href="#task-interface">接单界面</a></li>
+          <li><a href="#contact">联系我们</a></li>
+      </ul>
+  </nav>
+  
+  <div class="container">
+      <section id="about" class="section">
+          <h2>关于 TaskWave</h2>
+          <p>TaskWave 是一个革命性的跨地区工作分配平台，融合了尖端 AI 技术与全球人才网络。我们不仅提供灵活的人力资源解决方案，更致力于推动 AI 与人类协作的未来发展。</p>
+          <p>通过我们的平台，我们收集并分析人类在完成各种复杂任务时的操作数据，这些宝贵的信息将用于训练下一代 AI 系统，推动通用人工智能的发展，最终实现人机协作的无缝融合。</p>
+      </section>
+  
+      <section id="features" class="section">
+          <h2>核心功能</h2>
+          <ul>
+              <li>AI 驱动的智能任务拆分与分配</li>
+              <li>全球化实时自动派单系统</li>
+              <li>跨领域、多语言人才网络</li>
+              <li>数据驱动的 AI 辅助学习与执行</li>
+              <li>持续优化的技能提升生态系统</li>
+          </ul>
+      </section>
+  
+      <section id="demo" class="section">
+          <h2>AI 学习演示：专业软件操作数据采集</h2>
+          <p>本演示展示了 TaskWave 如何实时收集用户在各种专业软件中的操作数据，并用于训练 AI 模型，持续提升系统智能。通过这种方式，我们正在构建一个不断进化的 AI 助手网络，能够适应各行各业的需求。</p>
+          <div id="demo-container">
+              <div id="task-panel">
+                  <h3>任务列表</h3>
+                  <ul id="task-list">
+                      <li class="task-item" data-software="photoshop">图像处理：增强产品照片对比度</li>
+                      <li class="task-item" data-software="autocad">工程设计：绘制简单房屋平面图</li>
+                      <li class="task-item" data-software="excel">数据分析：生成月度销售报表</li>
+                      <li class="task-item" data-software="vscode">软件开发：修复网站登录 bug</li>
+                      <li class="task-item" data-software="blender">3D 建模：创建简单的家具模型</li>
+                  </ul>
+              </div>
+              <div id="workspace">
+                  <div id="software-interface"></div>
+                  <div id="cursor"></div>
+                  <div id="data-flow"></div>
+                  <div id="ai-model">AI Model</div>
+                  <div id="action-log"></div>
+              </div>
+          </div>
+      </section>
+  
+      <section id="workflow" class="section">
+          <h2>TaskWave 工作流程</h2>
+          <svg id="workflow" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                  <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+                      <polygon points="0 0, 10 3.5, 0 7" fill="#3498db" />
+                  </marker>
+              </defs>
+              
+              <!-- 节点 -->
+              <circle cx="100" cy="200" r="50" fill="#3498db" />
+              <text x="100" y="200" text-anchor="middle" fill="white" font-size="14">派单</text>
+              
+              <circle cx="300" cy="200" r="50" fill="#2ecc71" />
+              <text x="300" y="200" text-anchor="middle" fill="white" font-size="14">接单</text>
+              
+              <circle cx="500" cy="200" r="50" fill="#e74c3c" />
+              <text x="500" y="200" text-anchor="middle" fill="white" font-size="14">完成订单</text>
+              
+              <circle cx="700" cy="200" r="50" fill="#f39c12" />
+              <text x="700" y="200" text-anchor="middle" fill="white" font-size="14">评分反馈</text>
+              
+              <!-- 连接线 -->
+              <line x1="150" y1="200" x2="250" y2="200" stroke="#3498db" stroke-width="2" marker-end="url(#arrowhead)" />
+              <line x1="350" y1="200" x2="450" y2="200" stroke="#3498db" stroke-width="2" marker-end="url(#arrowhead)" />
+              <line x1="550" y1="200" x2="650" y2="200" stroke="#3498db" stroke-width="2" marker-end="url(#arrowhead)" />
+              
+              <!-- AI 训练流程 -->
+              <text x="400" y="50" text-anchor="middle" fill="#34495e" font-size="18" font-weight="bold">AI 训练流程</text>
+              <line x1="100" y1="80" x2="700" y2="80" stroke="#34495e" stroke-width="2" stroke-dasharray="5,5" />
+              <text x="100" y="100" text-anchor="middle" fill="#34495e" font-size="14">训练要求</text>
+              <text x="300" y="100" text-anchor="middle" fill="#34495e" font-size="14">开始训练</text>
+              <text x="500" y="100" text-anchor="middle" fill="#34495e" font-size="14">完成训练</text>
+              <text x="700" y="100" text-anchor="middle" fill="#34495e" font-size="14">监督训练</text>
+          </svg>
+      </section>
+  
+      <section id="task-interface" class="section">
+          <h2>接单界面</h2>
+          <button id="start-listening" class="btn">开始接单</button>
+          <div id="sound-wave">
+              <div class="wave-circle" style="animation-delay: 0s;"></div>
+              <div class="wave-circle" style="animation-delay: 0.5s;"></div>
+              <div class="wave-circle" style="animation-delay: 1s;"></div>
+              <div class="wave-circle" style="animation-delay: 1.5s;"></div>
+          </div>
+          <div id="listening-text">听单中...</div>
+          <div id="task-card" class="task-card">
+              <div class="task-title"></div>
+              <div class="task-description"></div>
+              <div class="task-actions">
+                  <button class="task-btn reject-btn">拒绝</button>
+                  <button class="task-btn accept-btn">接受</button>
+              </div>
+          </div>
+      </section>
+  
+      <section id="contact" class="section">
+          <h2>与我们联系</h2>
+          <p>想要深入了解 TaskWave 如何革新工作方式并推动 AI 发展？我们期待与您交流！</p>
+          <a href="mailto:info@taskwave.com" class="btn">联系我们</a>
+      </section>
+  </div>
+  
+  <script>
+  document.addEventListener('DOMContentLoaded', (event) => {
+      const workspace = document.getElementById('workspace');
+      const aiModel = document.getElementById('ai-model');
+      const softwareInterface = document.getElementById('software-interface');
+      const actionLog = document.getElementById('action-log');
+      const cursor = document.getElementById('cursor');
+  
+      const softwareInterfaces = {
+          photoshop: `
+              <svg width="100%" height="100%" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="100%" height="100%" fill="#2a2a2a"/>
+                  <rect x="10" y="10" width="780" height="40" fill="#3a3a3a"/>
+                  <text x="20" y="35" fill="white" font-family="Arial" font-size="16">Photoshop</text>
+                  <rect x="10" y="60" width="150" height="530" fill="#3a3a3a"/>
+                  <rect x="170" y="60" width="620" height="530" fill="#4a4a4a"/>
+                  <circle cx="400" cy="325" r="200" fill="#5a5a5a"/>
+              </svg>
+          `,
+          autocad: `
+              <svg width="100%" height="100%" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="100%" height="100%" fill="#2b2b2b"/>
+                  <rect x="10" y="10" width="780" height="40" fill="#3b3b3b"/>
+                  <text x="20" y="35" fill="white" font-family="Arial" font-size="16">AutoCAD</text>
+                  <line x1="100" y1="100" x2="700" y2="100" stroke="white" stroke-width="2"/>
+                  <line x1="100" y1="100" x2="100" y2="500" stroke="white" stroke-width="2"/>
+                  <rect x="200" y="200" width="400" height="300" fill="none" stroke="white" stroke-width="2"/>
+              </svg>
+          `,
+          excel: `
+              <svg width="100%" height="100%" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="100%" height="100%" fill="#ffffff"/>
+                  <rect x="10" y="10" width="780" height="40" fill="#217346"/>
+                  <text x="20" y="35" fill="white" font-family="Arial" font-size="16">Excel</text>
+                  <line x1="50" y1="60" x2="50" y2="590" stroke="#d3d3d3" stroke-width="1"/>
+                  <line x1="10" y1="100" x2="790" y2="100" stroke="#d3d3d3" stroke-width="1"/>
+                  <text x="60" y="90" fill="black" font-family="Arial" font-size="14">A</text>
+                  <text x="160" y="90" fill="black" font-family="Arial" font-size="14">B</text>
+                  <text x="260" y="90" fill="black" font-family="Arial" font-size="14">C</text>
+              </svg>
+          `,
+          vscode: `
+              <svg width="100%" height="100%" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="100%" height="100%" fill="#1e1e1e"/>
+                  <rect x="10" y="10" width="780" height="40" fill="#2d2d2d"/>
+                  <text x="20" y="35" fill="white" font-family="Arial" font-size="16">Visual Studio Code</text>
+                  <rect x="10" y="60" width="150" height="530" fill="#252526"/>
+                  <rect x="170" y="60" width="620" height="530" fill="#1e1e1e"/>
+                  <text x="180" y="90" fill="#d4d4d4" font-family="Consolas" font-size="14">function hello() {</text>
+                  <text x="180" y="110" fill="#d4d4d4" font-family="Consolas" font-size="14">    console.log("Hello, World!");</text>
+                  <text x="180" y="130" fill="#d4d4d4" font-family="Consolas" font-size="14">}</text>
+              </svg>
+          `,
+          blender: `
+              <svg width="100%" height="100%" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="100%" height="100%" fill="#3c3c3c"/>
+                  <rect x="10" y="10" width="780" height="40" fill="#4c4c4c"/>
+                  <text x="20" y="35" fill="white" font-family="Arial" font-size="16">Blender</text>
+                  <rect x="10" y="60" width="150" height="530" fill="#2c2c2c"/>
+                  <rect x="170" y="60" width="620" height="530" fill="#4c4c4c"/>
+                  <circle cx="480" cy="325" r="100" fill="#5c5c5c"/>
+                  <rect x="380" y="325" width="200" height="100" fill="#5c5c5c"/>
+              </svg>
+          `
+      };
+  
+      const softwareActions = {
+          photoshop: ['调整亮度/对比度', '应用锐化滤镜', '调整色阶', '使用曲线工具', '应用高反差保留'],
+          autocad: ['绘制墙体线条', '添加门窗符号', '标注尺寸', '创建图层', '设置比例'],
+          excel: ['导入销售数据', '创建数据透视表', '设计图表', '应用条件格式', '编写汇总公式'],
+          vscode: ['定位 bug 代码', '编写修复逻辑', '进行单元测试', '提交代码变更', '部署更新'],
+          blender: ['创建基础几何体', '应用修改器', '设置材质', '添加纹理', '渲染预览']
+      };
+  
+      function createDataPoint(x, y) {
+          const dataPoint = document.createElement('div');
+          dataPoint.className = 'data-point';
+          dataPoint.style.left = x + 'px';
+          dataPoint.style.top = y + 'px';
+          workspace.appendChild(dataPoint);
+  
+          setTimeout(() => {
+              dataPoint.style.opacity = '1';
+              dataPoint.style.transform = 'scale(1.5)';
+          }, 10);
+  
+          setTimeout(() => {
+              dataPoint.style.transform = 'scale(0)';
+              dataPoint.style.opacity = '0';
+          }, 2000);
+  
+          setTimeout(() => {
+              workspace.removeChild(dataPoint);
+          }, 2500);
+      }
+  
+      function pulseAIModel() {
+          aiModel.style.animation = 'pulse 0.5s ease-in-out';
+          setTimeout(() => {
+              aiModel.style.animation = 'none';
+          }, 500);
+      }
+  
+      function simulateUserAction(software, task) {
+          const actions = softwareActions[software];
+          const action = actions[Math.floor(Math.random() * actions.length)];
+          const x = Math.random() * workspace.offsetWidth;
+          const y = Math.random() * workspace.offsetHeight;
+  
+          cursor.style.left = x + 'px';
+          cursor.style.top = y + 'px';
+  
+          createDataPoint(x, y);
+          actionLog.innerHTML += `执行操作：${action}<br>数据收集：${software} - ${task}<br>`;
+          actionLog.scrollTop = actionLog.scrollHeight;
+          
+          setTimeout(pulseAIModel, 500);
+      }
+  
+      document.querySelectorAll('.task-item').forEach(item => {
+          item.addEventListener('click', () => {
+              const software = item.getAttribute('data-software');
+              const task = item.textContent;
+              softwareInterface.innerHTML = softwareInterfaces[software];
+              actionLog.innerHTML = `开始任务：${task}<br>`;
+  
+              clearInterval(window.simulationInterval);
+              window.simulationInterval = setInterval(() => simulateUserAction(software, task), 2000);
+          });
+      });
+  
+      const startListeningBtn = document.getElementById('start-listening');
+      const soundWave = document.getElementById('sound-wave');
+      const listeningText = document.getElementById('listening-text');
+      const taskCard = document.getElementById('task-card');
+      const taskTitle = taskCard.querySelector('.task-title');
+      const taskDescription = taskCard.querySelector('.task-description');
+      const acceptBtn = taskCard.querySelector('.accept-btn');
+      const rejectBtn = taskCard.querySelector('.reject-btn');
+  
+      let isListening = false;
+  
+      startListeningBtn.addEventListener('click', () => {
+          if (!isListening) {
+              isListening = true;
+              startListeningBtn.style.display = 'none';
+              soundWave.style.display = 'block';
+              listeningText.style.display = 'block';
+              setTimeout(showTask, 3000); // 模拟 3 秒后收到任务
+          }
+      });
+  
+      function showTask() {
+          soundWave.style.display = 'none';
+          listeningText.style.display = 'none';
+          taskCard.style.display = 'block';
+  
+          // 模拟任务数据
+          taskTitle.textContent = "网页设计：电商首页改版";
+          taskDescription.textContent = "为某知名电商平台设计新的首页布局，提高用户转化率和停留时间。需要精通 UI/UX 设计和响应式布局。";
+      }
+  
+      acceptBtn.addEventListener('click', () => {
+          alert('您已接受任务！');
+          resetInterface();
+      });
+  
+      rejectBtn.addEventListener('click', () => {
+          alert('您已拒绝任务。');
+          resetInterface();
+      });
+  
+      function resetInterface() {
+          isListening = false;
+          taskCard.style.display = 'none';
+          startListeningBtn.style.display = 'inline-block';
+      }
+  });
+  document.addEventListener('DOMContentLoaded', (event) => {
+    // Hero Animation
+    const heroAnimation = document.getElementById('hero-animation');
+    const nodeCount = 50;
+    const connectionDistance = 100;
+    const nodes = [];
 
-<div class="container">
-    <section id="about" class="section">
-        <h2>关于TaskWave</h2>
-        <p>TaskWave是一个革命性的跨地区工作分配平台，融合了尖端AI技术与全球人才网络。我们不仅提供灵活的人力资源解决方案，更致力于推动AI与人类协作的未来发展。</p>
-        <p>通过我们的平台，我们收集并分析人类在完成各种复杂任务时的操作数据，这些宝贵的信息将用于训练下一代AI系统，推动通用人工智能的发展，最终实现人机协作的无缝融合。</p>
-    </section>
-
-    <section id="features" class="section">
-        <h2>核心功能</h2>
-        <ul>
-            <li>AI驱动的智能任务拆分与分配</li>
-            <li>全球化实时自动派单系统</li>
-            <li>跨领域、多语言人才网络</li>
-            <li>数据驱动的AI辅助学习与执行</li>
-            <li>持续优化的技能提升生态系统</li>
-        </ul>
-    </section>
-
-    <section id="demo" class="section">
-        <h2>AI学习演示：专业软件操作数据采集</h2>
-        <p>本演示展示了TaskWave如何实时收集用户在各种专业软件中的操作数据，并用于训练AI模型，持续提升系统智能。通过这种方式，我们正在构建一个不断进化的AI助手网络，能够适应各行各业的需求。</p>
-        <div id="demo-container">
-            <div id="task-panel">
-                <h3>任务列表</h3>
-                <ul id="task-list">
-                    <li class="task-item" data-software="photoshop">图像处理：增强产品照片对比度</li>
-                    <li class="task-item" data-software="autocad">工程设计：绘制简单房屋平面图</li>
-                    <li class="task-item" data-software="excel">数据分析：生成月度销售报表</li>
-                    <li class="task-item" data-software="vscode">软件开发：修复网站登录bug</li>
-                    <li class="task-item" data-software="blender">3D建模：创建简单的家具模型</li>
-                </ul>
-            </div>
-            <div id="workspace">
-                <div id="software-interface"></div>
-                <div id="cursor"></div>
-                <div id="data-flow"></div>
-                <div id="ai-model">AI Model</div>
-                <div id="action-log"></div>
-            </div>
-        </div>
-    </section>
-
-    <section id="workflow" class="section">
-        <h2>TaskWave工作流程</h2>
-        <svg id="workflow" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
-                    <polygon points="0 0, 10 3.5, 0 7" fill="#3498db" />
-                </marker>
-            </defs>
-            
-            <!-- 节点 -->
-            <circle cx="100" cy="200" r="50" fill="#3498db" />
-            <text x="100" y="200" text-anchor="middle" fill="white" font-size="14">派单</text>
-            
-            <circle cx="300" cy="200" r="50" fill="#2ecc71" />
-            <text x="300" y="200" text-anchor="middle" fill="white" font-size="14">接单</text>
-            
-            <circle cx="500" cy="200" r="50" fill="#e74c3c" />
-            <text x="500" y="200" text-anchor="middle" fill="white" font-size="14">完成订单</text>
-            
-            <circle cx="700" cy="200" r="50" fill="#f39c12" />
-            <text x="700" y="200" text-anchor="middle" fill="white" font-size="14">评分反馈</text>
-            
-            <!-- 连接线 -->
-            <line x1="150" y1="200" x2="250" y2="200" stroke="#3498db" stroke-width="2" marker-end="url(#arrowhead)" />
-            <line x1="350" y1="200" x2="450" y2="200" stroke="#3498db" stroke-width="2" marker-end="url(#arrowhead)" />
-            <line x1="550" y1="200" x2="650" y2="200" stroke="#3498db" stroke-width="2" marker-end="url(#arrowhead)" />
-            
-            <!-- AI训练流程 -->
-            <text x="400" y="50" text-anchor="middle" fill="#34495e" font-size="18" font-weight="bold">AI训练流程</text>
-            <line x1="100" y1="80" x2="700" y2="80" stroke="#34495e" stroke-width="2" stroke-dasharray="5,5" />
-            <text x="100" y="100" text-anchor="middle" fill="#34495e" font-size="14">训练要求</text>
-            <text x="300" y="100" text-anchor="middle" fill="#34495e" font-size="14">开始训练</text>
-            <text x="500" y="100" text-anchor="middle" fill="#34495e" font-size="14">完成训练</text>
-            <text x="700" y="100" text-anchor="middle" fill="#34495e" font-size="14">监督训练</text>
-        </svg>
-    </section>
-
-    <section id="task-interface" class="section">
-        <h2>接单界面</h2>
-        <button id="start-listening" class="btn">开始接单</button>
-        <div id="sound-wave">
-            <div class="wave-circle" style="animation-delay: 0s;"></div>
-            <div class="wave-circle" style="animation-delay: 0.5s;"></div>
-            <div class="wave-circle" style="animation-delay: 1s;"></div>
-            <div class="wave-circle" style="animation-delay: 1.5s;"></div>
-        </div>
-        <div id="listening-text">听单中...</div>
-        <div id="task-card" class="task-card">
-            <div class="task-title"></div>
-            <div class="task-description"></div>
-            <div class="task-actions">
-                <button class="task-btn reject-btn">拒绝</button>
-                <button class="task-btn accept-btn">接受</button>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="section">
-        <h2>与我们联系</h2>
-        <p>想要深入了解TaskWave如何革新工作方式并推动AI发展？我们期待与您交流！</p>
-        <a href="mailto:info@taskwave.com" class="btn">联系我们</a>
-    </section>
-</div>
-
-<script>
-document.addEventListener('DOMContentLoaded', (event) => {
-    const workspace = document.getElementById('workspace');
-    const aiModel = document.getElementById('ai-model');
-    const softwareInterface = document.getElementById('software-interface');
-    const actionLog = document.getElementById('action-log');
-    const cursor = document.getElementById('cursor');
-
-    const softwareInterfaces = {
-        photoshop: `
-            <svg width="100%" height="100%" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
-                <rect width="100%" height="100%" fill="#2a2a2a"/>
-                <rect x="10" y="10" width="780" height="40" fill="#3a3a3a"/>
-                <text x="20" y="35" fill="white" font-family="Arial" font-size="16">Photoshop</text>
-                <rect x="10" y="60" width="150" height="530" fill="#3a3a3a"/>
-                <rect x="170" y="60" width="620" height="530" fill="#4a4a4a"/>
-                <circle cx="400" cy="325" r="200" fill="#5a5a5a"/>
-            </svg>
-        `,
-        autocad: `
-            <svg width="100%" height="100%" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
-                <rect width="100%" height="100%" fill="#2b2b2b"/>
-                <rect x="10" y="10" width="780" height="40" fill="#3b3b3b"/>
-                <text x="20" y="35" fill="white" font-family="Arial" font-size="16">AutoCAD</text>
-                <line x1="100" y1="100" x2="700" y2="100" stroke="white" stroke-width="2"/>
-                <line x1="100" y1="100" x2="100" y2="500" stroke="white" stroke-width="2"/>
-                <rect x="200" y="200" width="400" height="300" fill="none" stroke="white" stroke-width="2"/>
-            </svg>
-        `,
-        excel: `
-            <svg width="100%" height="100%" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
-                <rect width="100%" height="100%" fill="#ffffff"/>
-                <rect x="10" y="10" width="780" height="40" fill="#217346"/>
-                <text x="20" y="35" fill="white" font-family="Arial" font-size="16">Excel</text>
-                <line x1="50" y1="60" x2="50" y2="590" stroke="#d3d3d3" stroke-width="1"/>
-                <line x1="10" y1="100" x2="790" y2="100" stroke="#d3d3d3" stroke-width="1"/>
-                <text x="60" y="90" fill="black" font-family="Arial" font-size="14">A</text>
-                <text x="160" y="90" fill="black" font-family="Arial" font-size="14">B</text>
-                <text x="260" y="90" fill="black" font-family="Arial" font-size="14">C</text>
-            </svg>
-        `,
-        vscode: `
-            <svg width="100%" height="100%" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
-                <rect width="100%" height="100%" fill="#1e1e1e"/>
-                <rect x="10" y="10" width="780" height="40" fill="#2d2d2d"/>
-                <text x="20" y="35" fill="white" font-family="Arial" font-size="16">Visual Studio Code</text>
-                <rect x="10" y="60" width="150" height="530" fill="#252526"/>
-                <rect x="170" y="60" width="620" height="530" fill="#1e1e1e"/>
-                <text x="180" y="90" fill="#d4d4d4" font-family="Consolas" font-size="14">function hello() {</text>
-                <text x="180" y="110" fill="#d4d4d4" font-family="Consolas" font-size="14">    console.log("Hello, World!");</text>
-                <text x="180" y="130" fill="#d4d4d4" font-family="Consolas" font-size="14">}</text>
-            </svg>
-        `,
-        blender: `
-            <svg width="100%" height="100%" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
-                <rect width="100%" height="100%" fill="#3c3c3c"/>
-                <rect x="10" y="10" width="780" height="40" fill="#4c4c4c"/>
-                <text x="20" y="35" fill="white" font-family="Arial" font-size="16">Blender</text>
-                <rect x="10" y="60" width="150" height="530" fill="#2c2c2c"/>
-                <rect x="170" y="60" width="620" height="530" fill="#4c4c4c"/>
-                <circle cx="480" cy="325" r="100" fill="#5c5c5c"/>
-                <rect x="380" y="325" width="200" height="100" fill="#5c5c5c"/>
-            </svg>
-        `
-    };
-
-    const softwareActions = {
-        photoshop: ['调整亮度/对比度', '应用锐化滤镜', '调整色阶', '使用曲线工具', '应用高反差保留'],
-        autocad: ['绘制墙体线条', '添加门窗符号', '标注尺寸', '创建图层', '设置比例'],
-        excel: ['导入销售数据', '创建数据透视表', '设计图表', '应用条件格式', '编写汇总公式'],
-        vscode: ['定位bug代码', '编写修复逻辑', '进行单元测试', '提交代码变更', '部署更新'],
-        blender: ['创建基础几何体', '应用修改器', '设置材质', '添加纹理', '渲染预览']
-    };
-
-    function createDataPoint(x, y) {
-        const dataPoint = document.createElement('div');
-        dataPoint.className = 'data-point';
-        dataPoint.style.left = x + 'px';
-        dataPoint.style.top = y + 'px';
-        workspace.appendChild(dataPoint);
-
-        setTimeout(() => {
-            dataPoint.style.opacity = '1';
-            dataPoint.style.transform = 'scale(1.5)';
-        }, 10);
-
-        setTimeout(() => {
-            dataPoint.style.transform = 'scale(0)';
-            dataPoint.style.opacity = '0';
-        }, 2000);
-
-        setTimeout(() => {
-            workspace.removeChild(dataPoint);
-        }, 2500);
+    function createNode() {
+        const node = document.createElement('div');
+        node.className = 'node';
+        node.style.left = Math.random() * 100 + '%';
+        node.style.top = Math.random() * 100 + '%';
+        heroAnimation.appendChild(node);
+        return {
+            element: node,
+            x: parseFloat(node.style.left),
+            y: parseFloat(node.style.top),
+            vx: Math.random() * 0.2 - 0.1,
+            vy: Math.random() * 0.2 - 0.1
+        };
     }
 
-    function pulseAIModel() {
-        aiModel.style.animation = 'pulse 0.5s ease-in-out';
-        setTimeout(() => {
-            aiModel.style.animation = 'none';
-        }, 500);
+    function createConnection(node1, node2) {
+        const connection = document.createElement('div');
+        connection.className = 'connection';
+        heroAnimation.appendChild(connection);
+        return connection;
     }
 
-    function simulateUserAction(software, task) {
-        const actions = softwareActions[software];
-        const action = actions[Math.floor(Math.random() * actions.length)];
-        const x = Math.random() * workspace.offsetWidth;
-        const y = Math.random() * workspace.offsetHeight;
-
-        cursor.style.left = x + 'px';
-        cursor.style.top = y + 'px';
-
-        createDataPoint(x, y);
-        actionLog.innerHTML += `执行操作: ${action}<br>数据收集: ${software} - ${task}<br>`;
-        actionLog.scrollTop = actionLog.scrollHeight;
-        
-        setTimeout(pulseAIModel, 500);
+    function updateNodePosition(node) {
+        node.x += node.vx;
+        node.y += node.vy;
+        if (node.x < 0 || node.x > 100) node.vx *= -1;
+        if (node.y < 0 || node.y > 100) node.vy *= -1;
+        node.element.style.left = node.x + '%';
+        node.element.style.top = node.y + '%';
     }
 
-    document.querySelectorAll('.task-item').forEach(item => {
-        item.addEventListener('click', () => {
-            const software = item.getAttribute('data-software');
-            const task = item.textContent;
-            softwareInterface.innerHTML = softwareInterfaces[software];
-            actionLog.innerHTML = `开始任务: ${task}<br>`;
-
-            clearInterval(window.simulationInterval);
-            window.simulationInterval = setInterval(() => simulateUserAction(software, task), 2000);
-        });
-    });
-
-    const startListeningBtn = document.getElementById('start-listening');
-    const soundWave = document.getElementById('sound-wave');
-    const listeningText = document.getElementById('listening-text');
-    const taskCard = document.getElementById('task-card');
-    const taskTitle = taskCard.querySelector('.task-title');
-    const taskDescription = taskCard.querySelector('.task-description');
-    const acceptBtn = taskCard.querySelector('.accept-btn');
-    const rejectBtn = taskCard.querySelector('.reject-btn');
-
-    let isListening = false;
-
-    startListeningBtn.addEventListener('click', () => {
-        if (!isListening) {
-            isListening = true;
-            startListeningBtn.style.display = 'none';
-            soundWave.style.display = 'block';
-            listeningText.style.display = 'block';
-            setTimeout(showTask, 3000); // 模拟3秒后收到任务
+    function updateConnection(connection, node1, node2) {
+        const dx = node2.x - node1.x;
+        const dy = node2.y - node1.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        if (distance < connectionDistance) {
+            connection.style.width = distance + '%';
+            connection.style.left = node1.x + '%';
+            connection.style.top = node1.y + '%';
+            const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+            connection.style.transform = `rotate(${angle}deg)`;
+            connection.style.opacity = 1 - distance / connectionDistance;
+        } else {
+            connection.style.opacity = 0;
         }
-    });
-
-    function showTask() {
-        soundWave.style.display = 'none';
-        listeningText.style.display = 'none';
-        taskCard.style.display = 'block';
-
-        // 模拟任务数据
-        taskTitle.textContent = "网页设计：电商首页改版";
-        taskDescription.textContent = "为某知名电商平台设计新的首页布局，提高用户转化率和停留时间。需要精通UI/UX设计和响应式布局。";
     }
 
-    acceptBtn.addEventListener('click', () => {
-        alert('您已接受任务！');
-        resetInterface();
-    });
-
-    rejectBtn.addEventListener('click', () => {
-        alert('您已拒绝任务。');
-        resetInterface();
-    });
-
-    function resetInterface() {
-        isListening = false;
-        taskCard.style.display = 'none';
-        startListeningBtn.style.display = 'inline-block';
+    for (let i = 0; i < nodeCount; i++) {
+        nodes.push(createNode());
     }
+
+    const connections = [];
+    for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+            connections.push({
+                element: createConnection(nodes[i], nodes[j]),
+                node1: nodes[i],
+                node2: nodes[j]
+            });
+        }
+    }
+
+    function animate() {
+        nodes.forEach(updateNodePosition);
+        connections.forEach(conn => updateConnection(conn.element, conn.node1, conn.node2));
+        requestAnimationFrame(animate);
+    }
+
+    animate();
 });
-</script>
-</body>
-</html>
+  </script>
+  </body>
+  </html>
+  
